@@ -42,7 +42,7 @@ export function App () {
       <h1>Phonebook</h1>
       <ContactForm onSubmit={handleSubmit}/>
       <h2>Contacts</h2>
-      {contacts == 0 && 
+      {contacts.length === 0 && 
       <p>Contacts are empty</p>
       }
       {contacts.length > 0 && 
