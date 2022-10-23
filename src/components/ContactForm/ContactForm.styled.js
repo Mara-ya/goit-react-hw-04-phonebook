@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Field } from 'formik';
+import { Form, Field } from 'formik';
 
-export const Form = styled.form`
+export const WrapperForm = styled(Form)`
     display: table-caption;
 `
 
