@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { Formik, Form } from 'formik';
-import { InputForm, SubmitBtn } from './ContactForm.styled'
+import { Formik } from 'formik';
+import { WrapperForm, InputForm, SubmitBtn } from './ContactForm.styled'
 
 export const ContactForm = ({ onSubmit }) => {
 
@@ -11,7 +11,7 @@ export const ContactForm = ({ onSubmit }) => {
 
     return (
       <Formik onSubmit={handleSubmit} initialValues={{ name: '', number: '' }}>
-      <Form>
+      <WrapperForm>
         <lable>Name</lable>
         <InputForm
           type="text"
@@ -29,7 +29,7 @@ export const ContactForm = ({ onSubmit }) => {
           required
         />
         <SubmitBtn type="submit">Add contact</SubmitBtn>
-      </Form>
+      </WrapperForm>
     </Formik>
     );
 }
