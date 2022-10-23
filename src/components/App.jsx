@@ -19,8 +19,7 @@ export function App () {
       contact => contact.name === data.name.trim()
     )
     if (!contactName){
-      data.id = nanoid(5);
-      setContacts(contacts => [data, ...contacts]);
+      setContacts(contacts => [{id: nanoid(5), ...data}, ...contacts]);
     } else {
       return alert(`${contactName.name} is already in contacts.`);
     }
@@ -43,59 +42,15 @@ export function App () {
       <h1>Phonebook</h1>
       <ContactForm onSubmit={handleSubmit}/>
       <h2>Contacts</h2>
-      <Filter value={filter} onChange={handleChange}/>
-      <ContactList filtered={getFilteredContacts()} onDelete={handleDelete}/>
+      {contacts == 0 && 
+      <p>Contacts are empty</p>
+      }
+      {contacts.length > 0 && 
+      <>
+        <Filter value={filter} onChange={handleChange}/>
+        <ContactList filtered={getFilteredContacts()} onDelete={handleDelete}/>
+      </>
+      }
     </Wrapper>
   )
 };
-
-// export class oldApp extends Component {
-//   state = {
-//     contacts: initialContacts,
-//     filter: ''
-//   }
-
-//   handleChange = e => {
-//     this.setState({filter: e.target.value});
-//   }
-
-//   handleSubmit = data => {
-//     const {contacts} = this.state;
-//     const contactName = contacts.find(
-//       contact => contact.name === data.name.trim()
-//     )
-//     if (!contactName){
-//       this.setState(prevState =>({
-//         contacts: [data, ...prevState.contacts],
-//       }))
-//     } else {
-//       return alert(`${contactName.name} is already in contacts.`)
-//     }
-//   }
-
-//   handleDelete = id => {
-//     this.setState(prevState => ({
-//       contacts: prevState.contacts.filter(contact => contact.id !== id)
-//     }))
-//   }
-
-//   getFilteredContacts = () => {
-//     const { filter, contacts } = this.state;
-//     const normalizedFilter = filter.toLowerCase();
-
-//     return contacts.filter(contact =>
-//       contact.name.toLowerCase().includes(normalizedFilter)
-//     )
-//   }
-  
-//   render(){
-//     return (
-//       <Wrapper>
-//         <h1>Phonebook</h1>
-//         <ContactForm onSubmit={this.handleSubmit}/>
-//         <h2>Contacts</h2>
-//         <Filter value={this.filter} onChange={this.handleChange}/>
-//         <ContactList filtered={this.getFilteredContacts()} onDelete={this.handleDelete}/>
-//       </Wrapper>
-//   )}
-// };
